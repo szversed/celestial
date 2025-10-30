@@ -625,3 +625,11 @@ async def falar_cmd(interaction: discord.Interaction, mensagem: str):
         except Exception:
             pass
 
+import os
+
+if __name__ == "__main__":
+    token = os.getenv("TOKEN")
+    if not token:
+        print("❌ ERRO: variável TOKEN não encontrada. Configure no Railway → Variables.")
+    else:
+        bot.run(token)
