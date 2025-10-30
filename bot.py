@@ -228,7 +228,7 @@ async def on_message(message: discord.Message):
                     # aguarda 2 horas (120 minutos)
                     await asyncio.sleep(120 * 60)
                     try:
-                        await message.channel.send("⏰ Já se passaram 2 horas! Pode dar bump novamente usando `/bump`.")
+                        await message.channel.send("")
                     except Exception:
                         pass
         if message.author.id not in bots_permitidos and auto_delete_bot_messages:
@@ -330,7 +330,7 @@ def member_name_from_id(guild: discord.Guild, user_id: str):
 async def menu(interaction: discord.Interaction):
     texto = "📜 **comandos disponíveis:**\n\n"
     texto += "💬 **gerais:**\n/menu → mostra este menu\n/contador [usuário] → mostra quantas mensagens enviou\n/rank → top 10 mensagens\n"
-    texto += ":performing_arts: **comandos de molestamento:**\n/molestar alvo → molestar alguém\n/molestados → top 10 mais molestados\n/molestador → top 10 que mais molestam\n/molestei → quan[...]
+    texto += ":performing_arts: **comandos de molestamento:**\n/molestar alvo → molestar alguém\n/molestados → top 10 mais molestados\n/molestador → top 10 que mais molestam\n/molestei → quantas pessoas você molestou\n/molestaram → quantas pessoas te molestaram\n"
     texto += "\n⚙️ **administração (soberba):**\n/clear <quantidade>\n/ban <usuários>\n/mute <usuários> <tempo>\n/link <on|off>\n/resetar\n/falar <mensagem> (soberba)"
     embed = discord.Embed(title="🎭 menu de comandos", description=texto, color=discord.Color.blue())
     await interaction.response.send_message(embed=embed)
@@ -524,7 +524,7 @@ async def clear_cmd(interaction: discord.Interaction, quantidade: int):
 # /ban (soberba) - aceita até 5 usuários como parâmetros
 @bot.tree.command(name="ban", description="Bane até 5 usuários (somente soberba).")
 @app_commands.describe(usuario1="Usuário 1 (obrigatório)", usuario2="Usuário 2 (opcional)", usuario3="Usuário 3 (opcional)", usuario4="Usuário 4 (opcional)", usuario5="Usuário 5 (opcional)")
-async def ban_cmd(interaction: discord.Interaction, usuario1: discord.Member, usuario2: discord.Member = None, usuario3: discord.Member = None, usuario4: discord.Member = None, usuario5: discord.Membe[...]
+async def ban_cmd(interaction: discord.Interaction, usuario1: discord.Member, usuario2: discord.Member = None, usuario3: discord.Member = None, usuario4: discord.Member = None, usuario5: discord.Member = None):
     if not tem_cargo_soberba_interaction(interaction):
         await interaction.response.send_message("🚫 você não tem permissão (soberba).", ephemeral=True)
         return
@@ -548,8 +548,8 @@ async def ban_cmd(interaction: discord.Interaction, usuario1: discord.Member, us
 
 # /mute (soberba) - aceita até 5 usuários + tempo em minutos
 @bot.tree.command(name="mute", description="Mutar usuários por X minutos (somente soberba).")
-@app_commands.describe(tempo="Tempo em minutos (inteiro)", usuario1="Usuário 1 (obrigatório)", usuario2="Usuário 2 (opcional)", usuario3="Usuário 3 (opcional)", usuario4="Usuário 4 (opcional)", u[...]
-async def mute_cmd(interaction: discord.Interaction, tempo: int, usuario1: discord.Member, usuario2: discord.Member = None, usuario3: discord.Member = None, usuario4: discord.Member = None, usuario5: [...]
+@app_commands.describe(tempo="Tempo em minutos (inteiro)", usuario1="Usuário 1 (obrigatório)", usuario2="Usuário 2 (opcional)", usuario3="Usuário 3 (opcional)", usuario4="Usuário 4 (opcional)", usuario5="Usuário 5 (opcional)")
+async def mute_cmd(interaction: discord.Interaction, tempo: int, usuario1: discord.Member, usuario2: discord.Member = None, usuario3: discord.Member = None, usuario4: discord.Member = None, usuario5: discord.Member = None):
     if not tem_cargo_soberba_interaction(interaction):
         await interaction.response.send_message("🚫 você não tem permissão (soberba).", ephemeral=True)
         return
