@@ -83,7 +83,7 @@ async def aplicar_cargos(member: discord.Member):
                 await member.add_roles(role)
             except Exception:
                 pass
-            canal = discord.utils.get(member.guild.text_channels, name="geral")
+            canal = discord.utils.get(member.guild.text_channels, name="confessionário")
             if not canal and member.guild.text_channels:
                 canal = member.guild.text_channels[0]
             if canal:
@@ -178,7 +178,7 @@ async def on_member_join(member):
                 await guild.ban(member, reason="bot automático - remoção por regra do servidor")
             except Exception:
                 pass
-            canal = discord.utils.get(guild.text_channels, name="geral")
+            canal = discord.utils.get(guild.text_channels, name="confessionário")
             if not canal and guild.text_channels:
                 canal = guild.text_channels[0]
             if inviter and not inviter.bot:
@@ -289,7 +289,7 @@ async def verificar_mutes():
                                 await member.remove_roles(role)
                             except Exception:
                                 pass
-                            canal = discord.utils.get(guild.text_channels, name="geral")
+                            canal = discord.utils.get(guild.text_channels, name="confessionário")
                             if not canal and guild.text_channels:
                                 canal = guild.text_channels[0]
                             if canal:
